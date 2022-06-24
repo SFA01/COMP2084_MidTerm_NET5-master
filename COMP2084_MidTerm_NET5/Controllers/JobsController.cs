@@ -20,9 +20,12 @@ namespace COMP2084_MidTerm_NET5.Controllers
         }
 
         // GET: Jobs
+
+        //Here I am ordering by sector for step 3bi
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Job.ToListAsync());
+            var orderjobContext = _context.Job.OrderBy (j => j.Sector);
+            return View (await orderjobContext.ToListAsync());
         }
 
         // GET: Jobs/Details/5

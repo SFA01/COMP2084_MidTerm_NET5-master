@@ -20,10 +20,12 @@ namespace COMP2084_MidTerm_NET5.Controllers
         }
 
         // GET: Candidates
+
+        //Here I am ordering by last name for step 3ai
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Candidate.Include(c => c.Job);
-            return View(await applicationDbContext.ToListAsync());
+            var CandidateOrderContext = _context.Candidate.Include(can => can.Job).OrderBy(can => can.LastName);
+            return View(await CandidateOrderContext.ToListAsync());
         }
 
         // GET: Candidates/Details/5

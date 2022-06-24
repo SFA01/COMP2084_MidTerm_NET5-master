@@ -1,23 +1,29 @@
 ﻿@model COMP2084_MidTerm_NET5.Models.Candidate
 
+<!--Here I am chanding the page title for step 2bi-->
+
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Candidates";
 }
 
-<h1>Details</h1>
+<!--Here I am changing the header for step 2bi-->
+
+<h1>Candidates</h1>
+
+<!--Here I changed the lastname and firstname to last name and first name. I had to delete @Html.DisplayNameFor(model => model) for step 3biii-->
 
 <div>
     <h4>Candidate</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name 
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+            Last Name 
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
@@ -25,8 +31,13 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Job)
         </dt>
+
+        <!-- Here I am creating a link for the Job Name field to the related Job’s detail in step 2bii-->
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Job.Name)
+            @if(Model.Job != null)
+            {
+                @Html.ActionLink(Model.Job.Name, "Details", "Jobs", new {id = Model.JobId})
+            }
         </dd>
     </dl>
 </div>
